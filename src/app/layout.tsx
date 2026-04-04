@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Providers from "@/components/Providers";
+import Navbar from "@/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "FlashCard AI",
-  description: "Paste your notes, AI generates flashcards. Study with spaced repetition.",
+  description:
+    "Paste your notes, AI generates flashcards. Study with spaced repetition.",
 };
 
 export default function RootLayout({
@@ -27,7 +30,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Providers>
+          <Navbar />
+          <main className="flex flex-1 flex-col">{children}</main>
+        </Providers>
+      </body>
     </html>
   );
 }
